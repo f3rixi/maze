@@ -2,12 +2,12 @@ import { Routes } from '@angular/router';
 
 export const routes: Routes = [
   {
-    path: 'maze',
-    loadComponent: () => import('./search/search.component'),
+    path: 'search',
+    loadComponent: () => import('./pages/search/search.component'),
   },
   {
     path: '',
-    redirectTo: 'maze',
+    redirectTo: 'search',
     pathMatch: 'full',
   },
 ];

@@ -19,13 +19,13 @@ import {
   Subject,
   switchMap,
 } from 'rxjs';
-import { ApiService } from '../shared/services/api/api.service';
 import { SearchTableComponent } from './search-table/search-table.component';
 import { SearchCardComponent } from './search-card/search-card.component';
-import { FilterSortService } from '../shared/services/utills/filter-sort.service';
 import { MatOption } from '@angular/material/core';
 import { MatSelect } from '@angular/material/select';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { ApiService } from '../../shared/services/api/api.service';
+import { FilterSortService } from '../../shared/services/utills/filter-sort.service';
 
 @Component({
   selector: 'app-search',
