@@ -1,0 +1,50 @@
+button {
+  transition: background-color 0.3s ease, box-shadow 0.3s ease,
+    transform 0.2s ease;
+}
+
+button:hover,
+button:focus {
+  background-color: #1565c0; 
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+  outline: none;
+  transform: translateY(-2px); 
+}
+
+button:active {
+  transform: translateY(0px); 
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.15);
+}
+
+mat-card {
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+mat-card:hover,
+mat-card:focus-within {
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
+  transform: translateY(-5px); 
+  cursor: pointer;
+}
+
+mat-card:active {
+  transform: translateY(-2px); 
+  box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.2);
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  border-color: #1565c0;
+  box-shadow: 0 0 5px rgba(21, 101, 192, 0.5);
+}
+
+.mat-select:hover,
+.mat-select:focus {
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+  border-color: #1565c0;
+}
+
+.mat-select:active {
+  box-shadow: none;
+}

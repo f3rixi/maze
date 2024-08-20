@@ -1,0 +1,29 @@
+<div class="card-container">
+  @for (show of searchResults; track $index) {
+  <mat-card class="mat-elevation-z2">
+    <mat-card-header>
+      <mat-card-title>{{ show.show.name }}</mat-card-title>
+      <mat-card-subtitle>{{ show.show.genres.join(", ") }}</mat-card-subtitle>
+    </mat-card-header>
+    @if (show.show.image) {
+    <img
+      mat-card-image
+      [src]="show.show.image.medium"
+      alt="{{ show.show.name }}"
+      [width]="250"
+    />}
+
+    <mat-card-content>
+      <p>
+        <strong>Start:</strong> {{ show.show.premiered | date : "MMMM yyyy" }}
+      </p>
+      @if (show.show.ended) {
+      <p><strong>End:</strong> {{ show.show.ended | date : "MMMM yyyy" }}</p>
+      }
+
+      <p><strong>Rate:</strong> {{ show.show.rating.average }}</p>
+      <p>{{ show.show.summary | htmlToText }}</p>
+    </mat-card-content>
+  </mat-card>
+  }
+</div>

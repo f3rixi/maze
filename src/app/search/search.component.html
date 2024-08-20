@@ -1,0 +1,92 @@
+<mat-form-field appearance="fill">
+  <input
+    matInput
+    [(ngModel)]="searchQuery"
+    (input)="onSearch()"
+    placeholder="Enter search query"
+  />
+  <button mat-icon-button matSuffix (click)="onSearch()">
+    <mat-icon>search</mat-icon>
+  </button>
+</mat-form-field>
+
+<div>
+  <form [formGroup]="filterForm">
+    <mat-form-field>
+      <mat-select formControlName="sort" panelClass="custom-panel">
+        <mat-option value="">None</mat-option>
+        <mat-option value="name">Name</mat-option>
+        <mat-option value="rating">Rating</mat-option>
+        <mat-option value="year">Year</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput formControlName="genre" placeholder="Enter genre" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <input
+        matInput
+        formControlName="rating"
+        type="number"
+        min="0"
+        max="10"
+        placeholder="Rating"
+      />
+    </mat-form-field>
+
+    <mat-form-field>
+      <input
+        matInput
+        formControlName="year"
+        type="number"
+        min="1900"
+        max="2100"
+        placeholder="Year"
+      />
+    </mat-form-field>
+  </form>
+</div>
+
+<div>
+  <button
+    mat-raised-button
+    (click)="switchView('table')"
+    [disabled]="viewMode === 'table'"
+  >
+    Table View
+  </button>
+  <button
+    mat-raised-button
+    (click)="switchView('card')"
+    [disabled]="viewMode === 'card'"
+  >
+    Card View
+  </button>
+</div>
+
+@if(isLoading) {
+<div class="loading-spinner">....loading</div>
+
+} @if(errorMessage) {
+<div class="error-message">
+  {{ errorMessage }}
+</div>
+}
+<div
+  infiniteScroll
+  [infiniteScrollDistance]="2"
+  [infiniteScrollUpDistance]="1.5"
+  [infiniteScrollThrottle]="5"
+  (scrolled)="onScroll()"
+>
+  @if(viewMode === 'table') {
+  <ng-container>
+    <app-search-table [searchResults]="displayedResults"></app-search-table>
+  </ng-container>
+  } @else {
+  <ng-container>
+    <app-search-card [searchResults]="displayedResults"></app-search-card>
+  </ng-container>
+  }
+</div>

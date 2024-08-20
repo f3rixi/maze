@@ -1,0 +1,69 @@
+<table mat-table [dataSource]="searchResults" class="mat-elevation-z8">
+  <!-- Name Column -->
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef>Name</th>
+    <td mat-cell *matCellDef="let element">{{ element.show.name }}</td>
+  </ng-container>
+
+  <!-- Image Column -->
+  <ng-container matColumnDef="image">
+    <th mat-header-cell *matHeaderCellDef>Image</th>
+    <td mat-cell *matCellDef="let element">
+      @if (element.show.image) {
+      <img
+        [src]="element.show.image.medium"
+        alt="{{ element.show.name }}"
+        width="50"
+      />
+      }
+    </td>
+  </ng-container>
+
+  <!-- Genres Column -->
+  <ng-container matColumnDef="genres">
+    <th mat-header-cell *matHeaderCellDef>Genres</th>
+    <td mat-cell *matCellDef="let element">
+      {{ element.show.genres.join(", ") }}
+    </td>
+  </ng-container>
+
+  <!-- Premiered Column -->
+  <ng-container matColumnDef="premiered">
+    <th mat-header-cell *matHeaderCellDef>Premiered</th>
+    <td mat-cell *matCellDef="let element">
+      {{ element.show.premiered | date : "MMMM yyyy" }}
+    </td>
+  </ng-container>
+
+  <!-- Ended Column -->
+  <ng-container matColumnDef="ended">
+    <th mat-header-cell *matHeaderCellDef>Ended</th>
+    <td mat-cell *matCellDef="let element">
+      <span *ngIf="element.show.ended">{{
+        element.show.ended | date : "MMMM yyyy"
+      }}</span>
+      @if (!element.show.ended) {
+      <span>Ongoing</span>
+      }
+    </td>
+  </ng-container>
+
+  <!-- Rating Column -->
+  <ng-container matColumnDef="rating">
+    <th mat-header-cell *matHeaderCellDef>Rating</th>
+    <td mat-cell *matCellDef="let element">
+      {{ element.show.rating.average }}
+    </td>
+  </ng-container>
+
+  <!-- Summary Column -->
+  <ng-container matColumnDef="summary">
+    <th mat-header-cell *matHeaderCellDef>Summary</th>
+    <td mat-cell *matCellDef="let element">
+      {{ element.show.summary | htmlToText }}
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>
